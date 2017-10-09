@@ -8,12 +8,12 @@ void mysh_parse_command(const char* command,
 {
   int idx=0;
   char*tmp;
-  char*ptr[20]={};
+  char*ptr[200]={};
 
-  (*argv) = (char**)malloc(sizeof(char*)*20);
-  for(idx=0;idx<20;idx++)
+  (*argv) = (char**)malloc(sizeof(char*)*200);
+  for(idx=0;idx<200;idx++)
   {
-    (*argv)[idx] = (char*)calloc(sizeof(char),100);
+    (*argv)[idx] = (char*)calloc(sizeof(char),1000);
   }
 
   tmp = strtok((char*)command, "\n");
