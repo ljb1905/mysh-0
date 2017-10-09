@@ -13,8 +13,8 @@ int do_cd(int argc, char** argv) {
 int do_pwd(int argc, char** argv) {
   if (!validate_pwd_argv(argc, argv))
     return -1;
-  char tmp[100] = {};
-  getcwd(tmp,100);
+  char tmp[9000] = {};
+  getcwd(tmp,9000);
   printf("%ss\n",tmp);
   return 0;
 }
