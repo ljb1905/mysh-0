@@ -8,7 +8,7 @@ void mysh_parse_command(const char* command,
 {
   int idx=0;
   char*tmp;
-  char*ptr[200]={};
+  char*ptr[]={};
   char copy[9000]={};
 
   strcpy(copy,command);
