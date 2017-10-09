@@ -20,11 +20,11 @@ int do_pwd(int argc, char** argv) {
 }
 
 int validate_cd_argv(int argc, char** argv) {
-  if(strcmp(argv[0],"cd"))==0 && argc == 2) return 1;
+  if(strcmp(argv[0],"cd")==0 && argc == 2) return 1;
   return 0;
 }
 
 int validate_pwd_argv(int argc, char** argv) {
-  if(strcmp(argv[0],"pwd"))==0 && argc == 1) return 1;
+  if(strcmp(argv[0],"pwd")==0 && argc == 1) return 1;
   return 0;
 }
