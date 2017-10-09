@@ -15,7 +15,7 @@ int do_pwd(int argc, char** argv) {
     return -1;
   char tmp[9000] = {};
   getcwd(tmp,9000);
-  printf("%ss\n",tmp);
+  printf("%s\n",tmp);
   return 0;
 }
 
