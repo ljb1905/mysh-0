@@ -5,35 +5,34 @@
 
 void mysh_parse_command(const char* command,
                         int *argc, char*** argv)
-{
+{  
   int idx=0;
+  int cnt=0;
   char*tmp;
-  char*ptr[]={};
   char copy[9000]={};
-
-  strcpy(copy,command);
-  
-  for(idx = 0;copy[idx]!=NULL;idx++)
+  strcpy(copy,command);  
+  for(idx = 0;copy[idx]!=0;idx++)
   {
-    if(copy[idx]=='\n') copy[idx]=' ';
+    if(copy[idx]=='\n'||copy[idx]=='\t') copy[idx]=' ';
+    else if(copy[idx]!=' ') cnt++;
   }
-  
-  (*argv) = (char**)malloc(sizeof(char*)*200);
-  for(idx=0;idx<200;idx++)
+  if(cnt==0)
   {
-    (*argv)[idx] = (char*)malloc(sizeof(char)*1000);
-    strcpy((*argv)[idx],"");
+    *argc = 1;
+    *(argv) = (char**)malloc(sizeof(char*));
+    (*argv)[0] = (char*)malloc(sizeof(char));
+    strcpy((*argv)[0],"");
+    return;
   }
-
-  tmp = strtok(copy, " ");
-  
-  for(idx=0;tmp!=NULL;idx++)
+  tmp = strtok(copy, " ");   
+  for(idx=0;tmp!=0;idx++)
   {
-    ptr[idx] = tmp;
-    argv[idx] = &ptr[idx];
+    *(argv) = (char**)realloc(*argv,sizeof(char*)*(idx+1));    
+    int size=strlen(tmp);
+    (*argv)[idx]=(char*)malloc(sizeof(char)*(size+1));
     strcpy((*argv)[idx],tmp);
-    tmp = strtok(NULL, " ");
+    tmp = strtok(NULL," ");
   }
-  argc = &idx;
   *argc = idx;
+  printf("%d\n",*argc);
 }
