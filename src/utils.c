@@ -9,24 +9,31 @@ void mysh_parse_command(const char* command,
   int idx=0;
   char*tmp;
   char*ptr[200]={};
+  char copy[9000]={};
 
+  strcpy(copy,command);
+  
+  for(idx = 0;copy[idx]!=NULL;idx++)
+  {
+    if(copy[idx]=='\n') copy[idx]=' ';
+  }
+  
   (*argv) = (char**)malloc(sizeof(char*)*200);
   for(idx=0;idx<200;idx++)
   {
-    (*argv)[idx] = (char*)calloc(sizeof(char),1000);
+    (*argv)[idx] = (char*)malloc(sizeof(char)*1000);
+    strcpy((*argv)[idx],"");
   }
 
-  tmp = strtok((char*)command, "\n");
-  tmp = strtok((char*)command, " ");
+  tmp = strtok(copy, " ");
   
   for(idx=0;tmp!=NULL;idx++)
   {
     ptr[idx] = tmp;
     argv[idx] = &ptr[idx];
     strcpy((*argv)[idx],tmp);
-    tmp = strtok(NULL, "\n");
     tmp = strtok(NULL, " ");
   }
-  *argc = idx;
   argc = &idx;
+  *argc = idx;
 }
