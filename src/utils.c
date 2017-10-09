@@ -34,5 +34,4 @@ void mysh_parse_command(const char* command,
     tmp = strtok(NULL," ");
   }
   *argc = idx;
-  printf("%d\n",*argc);
 }
