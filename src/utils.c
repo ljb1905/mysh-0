@@ -1,5 +1,6 @@
 #include "utils.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 void mysh_parse_command(const char* command,
@@ -10,7 +11,7 @@ void mysh_parse_command(const char* command,
   char*ptr[20]={};
 
   (*argv) = (char**)malloc(sizeof(char*)*20);
-  for(idx=0;idx<20;i++)
+  for(idx=0;idx<20;idx++)
   {
     (*argv)[idx] = (char*)calloc(sizeof(char),100);
   }
@@ -22,11 +23,10 @@ void mysh_parse_command(const char* command,
   {
     ptr[idx] = tmp;
     argv[idx] = &ptr[idx];
-    strcpy((*argv)[i],tmp);
+    strcpy((*argv)[idx],tmp);
     tmp = strtok(NULL, "\n");
     tmp = strtok(NULL, " ");
   }
   *argc = idx;
   argc = &idx;
-  }
 }
